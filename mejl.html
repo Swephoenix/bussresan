@@ -1,144 +1,368 @@
 <!DOCTYPE html>
-<html>
+<html lang="sv">
 <head>
-	<title>Bussresa till Swexit 9/5</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bussresa till Swexit 9 maj</title>
+  <style>
+    /* Grundläggande reset för mejlklienter */
+    body, p, h1, h2, h3, ul, li { margin: 0; padding: 0; }
+    body {
+      background-color: #eef2f4;
+      font-family: Arial, Helvetica, sans-serif;
+      color: #111827;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    
+    /* Huvudbehållare */
+    .email-wrapper {
+      width: 100%;
+      background-color: #eef2f4;
+      padding: 30px 10px;
+    }
+    .email-container {
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: #ffffff;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(30, 54, 80, 0.1);
+    }
 
-	<style>
-		.cwSendError {
-			margin: 1em;
-		}
-		.cwSendErrorContent {
-			box-sizing: border-box;
-			max-width: 600px;
-			margin: auto;
-			width: 50%;
-			border: 2px solid #2A4B6D;
-			border-radius: 6px;
-			padding: 1em 25px 2em 25px;
-		}
-		.cwParameterName {
-			opacity: 0.6;
-			text-align: right;
-			padding-right: 0.5em;
-		}
-		.cwParameterValue {
-			font-weight: bold;
-			text-align: left;
-		}
-		.cwPrintOnly,
-		.cwPrintOnly * {
-			display: none !important;
-		}
-	</style>
+    /* Header med bild */
+    .header-image img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-bottom: 4px solid #c79a2d; /* Guldlinje */
+    }
+
+    /* Intro */
+    .content-padding {
+      padding: 32px;
+    }
+    .eyebrow {
+      color: #c63b2b;
+      font-size: 13px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+    h1 {
+      font-size: 26px;
+      color: #1e3650;
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+    .intro-text {
+      font-size: 16px;
+      color: #374151;
+      margin-bottom: 24px;
+    }
+
+    /* Ikon-lista (Snabbfakta) */
+    .quick-facts {
+      background-color: #f8fafc;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 30px;
+      border: 1px solid #e2e8f0;
+    }
+    .fact-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+    .fact-item:last-child { margin-bottom: 0; }
+    .fact-icon {
+      width: 24px;
+      height: 24px;
+      color: #2a4b6d;
+      margin-right: 12px;
+      flex-shrink: 0;
+    }
+    .fact-text {
+      font-size: 15px;
+    }
+    .fact-text strong {
+      color: #1e3650;
+    }
+
+    /* Sektion: Gemenskap & Bild 2 */
+    .split-section {
+      display: flex;
+      gap: 24px;
+      margin-bottom: 30px;
+      align-items: center;
+    }
+    .split-text {
+      flex: 1;
+    }
+    .split-text h2 {
+      font-size: 20px;
+      color: #1e3650;
+      margin-bottom: 12px;
+    }
+    .split-image {
+      flex: 1;
+    }
+    .split-image img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+    .check-list {
+      list-style: none;
+    }
+    .check-list li {
+      position: relative;
+      padding-left: 28px;
+      margin-bottom: 10px;
+      font-size: 15px;
+    }
+    .check-list svg {
+      position: absolute;
+      left: 0;
+      top: 2px;
+      width: 20px;
+      height: 20px;
+      color: #c79a2d;
+    }
+
+    /* Prisboxen (Tydliggjord) */
+    .price-box {
+      background: linear-gradient(135deg, #1e3650, #2a4b6d);
+      color: #ffffff;
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+    .price-box h2 {
+      color: #ffffff;
+      font-size: 20px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .price-title-icon {
+      width: 240px;
+      height: auto;
+      flex-shrink: 0;
+    }
+    .price-box p {
+      color: #cbd5e1;
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+    .price-tiers {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+    }
+    .tier {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 8px;
+      padding: 16px;
+      flex: 1;
+    }
+    .tier.best-price {
+      background: #ffffff;
+      color: #1e3650;
+      transform: scale(1.05);
+      border: 2px solid #c79a2d;
+    }
+    .tier span {
+      display: block;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 4px;
+      opacity: 0.8;
+    }
+    .tier.best-price span { opacity: 1; color: #5a6472; }
+    .tier strong {
+      display: block;
+      font-size: 24px;
+      line-height: 1;
+    }
+
+    /* Call to Action (Knapp) */
+    .cta-section {
+      text-align: center;
+      padding-top: 10px;
+    }
+    .button {
+      display: inline-block;
+      background-color: #c63b2b;
+      color: #ffffff !important;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: bold;
+      padding: 16px 32px;
+      border-radius: 99px;
+      box-shadow: 0 4px 15px rgba(198, 59, 43, 0.3);
+      transition: background-color 0.2s;
+    }
+    .button:hover {
+      background-color: #a82f24;
+    }
+    .deadline {
+      margin-top: 16px;
+      font-size: 14px;
+      color: #5a6472;
+      background: #fdf2f2;
+      display: inline-block;
+      padding: 8px 16px;
+      border-radius: 8px;
+      border: 1px solid #f9d8d8;
+    }
+
+    /* Footer */
+    .footer {
+      background-color: #f1f5f9;
+      padding: 24px;
+      text-align: center;
+      font-size: 13px;
+      color: #64748b;
+      border-top: 1px solid #e2e8f0;
+    }
+
+    /* Responsivitet för mobiler */
+    @media (max-width: 600px) {
+      .content-padding { padding: 24px 16px; }
+      .split-section { flex-direction: column; }
+      .split-image { width: 100%; order: -1; } /* Lägger bilden ovanför texten på mobil */
+      .price-tiers { flex-direction: column; }
+      .tier.best-price { transform: scale(1); }
+      h1 { font-size: 24px; }
+    }
+  </style>
 </head>
-<body style="font-family: Arial, Helvetica, sans-serif; font-size: 13px; background-color: #F2F2F2; color: #000; padding: 0; margin: 0;">
-<div style="padding: 0; margin: auto; max-width: 600px; border-collapse: collapse;">
-<table style="width: 100%; border: 0; margin: 0; border-collapse: collapse; background-color: #F2F2F2; color: #000;">
-	<tbody>
-		<tr>
-			<td style="padding: 0; text-align: center;">
-			<table style="margin: auto; max-width: 600px; border: 0; margin: 0; border-collapse: collapse; background-color: #FFF; color: #000;">
-				<tbody>
-					<tr>
-						<td style="padding: 0; text-align: center;">
-<div style="background-color:#2A4B6D; color:#fff; padding:18px 20px 16px 20px;">
-	<div style="font-size:11px; letter-spacing:0.06em; text-transform:uppercase; font-weight:bold;">Swexit 9 maj</div>
-	<div style="font-size:28px; line-height:1.1; font-family: Georgia, 'Times New Roman', serif; margin-top:6px;">Bussresa till Stockholm</div>
-	<div style="font-size:13px; line-height:1.5; margin-top:8px;">Avgång från Skene, via Borås, med självkostnad och gemenskap hela vägen.</div>
-</div>
-<div><img src="cid:buss_amb" style="display: block; max-width: 100% !important; border-width: 0; border: 0;" alt="Ambition Sverige bussresa till Stockholm"></div>
-<div style="background-color:#F7F4EB; border-top:1px solid #E1D8C3; border-bottom:1px solid #E1D8C3; padding:14px 18px; text-align:left;">
-	<table style="width:100%; border-collapse:collapse; border:0; margin:0;">
-		<tr>
-			<td style="width:50%; padding:0 8px 0 0; vertical-align:top;">
-				<div style="font-size:11px; letter-spacing:0.06em; text-transform:uppercase; color:#2A4B6D; font-weight:bold;">Avgång</div>
-				<div style="font-size:15px; line-height:1.35; margin-top:4px; font-weight:bold;">06:00 från Skene</div>
-			</td>
-			<td style="width:50%; padding:0 0 0 8px; vertical-align:top;">
-				<div style="font-size:11px; letter-spacing:0.06em; text-transform:uppercase; color:#2A4B6D; font-weight:bold;">Sista dag</div>
-				<div style="font-size:15px; line-height:1.35; margin-top:4px; font-weight:bold;">26 april</div>
-			</td>
-		</tr>
-	</table>
-</div>
-</td>
-					</tr>
-					<tr>
-						<td style="padding: 25px 25px 35px 25px; text-align: left;">
-<div><h3 style="margin:0 0 10px 0; font-size:18px; line-height:1.2; color:#2A4B6D;">Hej!</h3>
-</div>
+<body>
 
-<div>
-<p style="margin-bottom:11px; margin-top:0;">Den <strong>9 maj</strong> samlas vi i Stockholm för Swexit-manifestationen. För att göra resan så smidig, billig och trevlig som möjligt abonnerar vi en egen buss.</p>
+  <div class="email-wrapper">
+    <div class="email-container">
+      
+      <!-- Huvudbild (Hero) -->
+      <div class="header-image">
+        <img src="cid:buss_amb" alt="Ambition Sveriges buss på väg mot Stockholm längs E4">
+      </div>
 
-<p style="margin-bottom:11px"><strong>Varför välja bussen?</strong></p>
+      <!-- Innehåll -->
+      <div class="content-padding">
+        
+        <div class="eyebrow">Stockholm, 9 Maj</div>
+        <h1>Följ med på gemensam bussresa till Swexit-manifestationen</h1>
+        <p class="intro-text">
+          För att göra resan så smidig, prisvärd och trevlig som möjligt abonnerar vi en egen buss. Följ med oss för en historisk dag med stark gemenskap och en tydlig plan!
+        </p>
 
-<table style="width:100%; border-collapse:collapse; margin:0 0 14px 0;">
-	<tr>
-		<td style="padding:10px 12px; background-color:#FBFCFD; border:1px solid #D8DEE6; border-left:4px solid #C79A2D; font-size:13px; line-height:1.5;">
-			Prisvärt: ca 1000 kr vid 30 personer, och ca 600 kr vid 50 personer.
-		</td>
-	</tr>
-	<tr>
-		<td style="padding:10px 12px; background-color:#FBFCFD; border:1px solid #D8DEE6; border-left:4px solid #C79A2D; border-top:0; font-size:13px; line-height:1.5;">
-			Bekvämt: trygg och gratis parkering vid bussbolaget i Skene.
-		</td>
-	</tr>
-	<tr>
-		<td style="padding:10px 12px; background-color:#FBFCFD; border:1px solid #D8DEE6; border-left:4px solid #C79A2D; border-top:0; font-size:13px; line-height:1.5;">
-			Gemenskap: ladda upp tillsammans med andra engagerade på vägen upp.
-		</td>
-	</tr>
-</table>
+        <!-- Snabbfakta med SVGs -->
+        <div class="quick-facts">
+          <div class="fact-item">
+            <svg class="fact-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <div class="fact-text"><strong>Avgång:</strong> 06:00 från Skene. Åter i Skene kl 00:00.</div>
+          </div>
+          <div class="fact-item">
+            <svg class="fact-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+            <div class="fact-text"><strong>Rutt:</strong> Skene, med upphämtning i Borås längs vägen.</div>
+          </div>
+          <div class="fact-item">
+            <svg class="fact-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+            </svg>
+            <div class="fact-text"><strong>Parkering:</strong> Trygg och gratis parkering vid bussbolaget i Skene.</div>
+          </div>
+        </div>
 
-<p style="margin-bottom:11px"><strong>Resplan & tider</strong></p>
-<ul style="margin: 0 0 14px 0; padding-left: 18px;">
-	<li style="margin-bottom:8px;">06:00 avgång från Skene.</li>
-	<li style="margin-bottom:8px;">Via Borås för upphämtning längs vägen.</li>
-	<li style="margin-bottom:8px;">00:00 åter i Skene efter en historisk dag.</li>
-</ul>
+        <!-- Tydlig Prissättning -->
+        <div class="price-box">
+          <h2>
+            <img class="price-title-icon" src="cid:bussresa" alt="" aria-hidden="true">
+            <span>Vad kostar resan per person?</span>
+          </h2>
+          <p>Vi reser till självkostnadspris. Ju fler vi blir, desto billigare blir det för alla per person!</p>
+          
+          <div class="price-tiers">
+            <div class="tier best-price">
+              <span>Mål: 50 resenärer</span>
+              <strong>ca 600 kr</strong>
+            </div>
+            <div class="tier">
+              <span>Vid 30 resenärer</span>
+              <strong>ca 1 000 kr</strong>
+            </div>
+          </div>
+        </div>
 
-<p style="margin-bottom:11px"><strong>Pris</strong></p>
-<table style="width:100%; border-collapse:collapse; margin:0 0 14px 0;">
-	<tr>
-		<td style="padding:8px 12px; background-color:#F7F4EB; border:1px solid #E1D8C3; font-size:13px;">Vid 30 personer: ca 1000 kr.</td>
-	</tr>
-	<tr>
-		<td style="padding:8px 12px; background-color:#F7F4EB; border:1px solid #E1D8C3; border-top:0; font-size:13px;"><strong>Vid 50 personer: ca 600 kr.</strong></td>
-	</tr>
-</table>
+        <!-- Smart bildplacering: Bild bredvid text -->
+        <div class="split-section">
+          <div class="split-text">
+            <h2>Gemenskap på vägen</h2>
+            <p style="margin-bottom: 12px; font-size: 15px;">Att åka gemensam buss är inte bara praktiskt, det är också en del av upplevelsen.</p>
+            <ul class="check-list">
+              <li>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                </svg>
+                Ladda upp tillsammans med andra engagerade.
+              </li>
+              <li>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                </svg>
+                Slipp stressen med att köra och hitta parkering i Stockholm.
+              </li>
+              <li>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                </svg>
+                Vi samordnar allt – du kan bara kliva på och njuta av resan.
+              </li>
+            </ul>
+          </div>
+          <div class="split-image">
+            <img src="cid:happyppl" alt="Glada resenärer från Ambition Sverige på bussen">
+          </div>
+        </div>
 
-<p style="margin-bottom:11px">Sista dag för intresseanmälan är <strong>26 april</strong>.</p>
+        <!-- Knapp och Anmälan -->
+        <div class="cta-section">
+          <a href="mailto:anneli.kullberg@ambitionsverige.se?subject=Intresseanm%C3%A4lan%20Buss%209%20maj&body=Hej%20Anneli%2C%0D%0A%0D%0AJag%20vill%20anm%C3%A4la%20intresse%20f%C3%B6r%20bussresan.%0D%0A%0D%0AAntal%20platser%3A%20%0D%0ANamn%3A%20%0D%0ATelefonnummer%3A%20%0D%0AStad%20jag%20reser%20ifr%C3%A5n%3A%20" class="button">
+            ANMÄL DITT INTRESSE HÄR
+          </a>
+          <br>
+          <div class="deadline">
+            <strong>Sista dag för anmälan:</strong> 26 april.<br> 
+            <span style="font-size: 13px;">Beslut om bokning tas den 27 april baserat på antal anmälda.</span>
+          </div>
+        </div>
 
-<p style="margin-bottom:16px;"><a href="mailto:anneli.kullberg@ambitionsverige.se?subject=Intresseanm%C3%A4lan%20Buss%209%20maj&body=Hej%20Anneli%2C%0D%0A%0D%0AJag%20vill%20anm%C3%A4la%20intresse%20f%C3%B6r%20bussresan.%0D%0A%0D%0AAntal%20platser%3A%20%0D%0ANamn%3A%20%0D%0ATelefonnummer%3A%20%0D%0AStad%20jag%20reser%20ifr%C3%A5n%3A%20" style="display:inline-block; background-color:#C63B2B; color:#fff; text-decoration:none; padding:12px 18px; border-radius:999px; font-weight:bold;">ANMÄL DITT INTRESSE HÄR</a></p>
+      </div>
 
-<p style="margin-bottom:11px">Beslut om bokning tas den 27 april baserat på antal anmälda. Maila din anmälan till <strong>anneli.kullberg@ambitionsverige.se</strong> senast den 26/4.</p>
+      <!-- Footer -->
+      <div class="footer">
+        <p style="margin-bottom: 8px;">Arrangeras i samarbete för Swexit-demonstrationen.</p>
+        <div style="margin-top: 16px;">
+          <img src="cid:ambition-sverige-partibeteckning" alt="Ambition Sverige logotyp" style="display:block; width:100%; max-width: 180px; height:auto; margin:0 auto;">
+        </div>
+      </div>
 
-<p style="margin-bottom:11px">Varma hälsningar</p>
-<p style="margin-bottom:11px"><strong>Ambition Sverige</strong></p>
-</div>
-</td>
-					</tr>
-					<tr class="cwNoPrint">
-						<td style="padding: 20px 25px; background-color: #E8E8E8;">
-						<table style="border: 0; margin: 0; border-collapse: collapse; width: 100%;">
-							<tbody>
-								<tr>
-									<td style="font-size: 12px; color: #444;">
-                Arrangeras i samarbete för Swexit-demonstrationen.
-</td>
-									<td style="text-align: right; font-size: 12px;"><a href="mailto:anneli.kullberg@ambitionsverige.se" target="_blank" title="E-post">E-post</a></td>
-								</tr>
-							</tbody>
-						</table>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-			</td>
-		</tr>
-	</tbody>
-</table>
-</div>
+    </div>
+  </div>
+
 </body>
 </html>

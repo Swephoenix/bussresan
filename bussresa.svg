@@ -1,0 +1,25 @@
+<svg width="600" height="200" viewBox="0 0 300 100" xmlns="http://www.w3.org/2000/svg">
+  <!-- 1. MYNT (Vänster - Centrerat runt x=70) -->
+  <g transform="translate(20, 0)">
+    <circle cx="50" cy="50" r="35" fill="#FFD700" stroke="#DAA520" stroke-width="2" />
+    <circle cx="50" cy="50" r="28" fill="none" stroke="#DAA520" stroke-width="1" stroke-dasharray="2,2" />
+    <text x="50" y="58" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="#B8860B" text-anchor="middle">kr</text>
+  </g>
+
+  <!-- 2. SNEDSTRECK / (Mitten - Centrerat på x=150) -->
+  <line x1="135" y1="80" x2="165" y2="20" stroke="#ffffff" stroke-width="6" stroke-linecap="round" />
+
+  <!-- 3. PERSON I SÄTE (Höger - Centrerat runt x=230) -->
+  <g transform="translate(180, 0)">
+    <!-- Bilstol -->
+    <rect x="30" y="15" width="40" height="15" rx="5" fill="#e0e0e0" />
+    <rect x="20" y="32" width="60" height="58" rx="10" fill="#f0f0f0" />
+    
+    <!-- Person -->
+    <path d="M25 90 Q25 55 50 55 Q75 55 75 90 Z" fill="#333" />
+    <circle cx="50" cy="38" r="12" fill="#333" />
+    
+    <!-- Bilbälte -->
+    <line x1="28" y1="55" x2="72" y2="88" stroke="#ffffff" stroke-width="6" stroke-linecap="round" />
+  </g>
+</svg>

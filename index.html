@@ -3,398 +3,366 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bussresa till Swexit 9/5</title>
+  <title>Bussresa till Swexit 9 maj</title>
   <style>
-    :root {
-      --bg: #eef2f4;
-      --panel: #ffffff;
-      --ink: #111827;
-      --muted: #5a6472;
-      --navy: #2a4b6d;
-      --navy-deep: #1e3650;
-      --line: #d8dee6;
-      --gold: #c79a2d;
-      --gold-soft: #f4ead0;
-      --red: #c63b2b;
-      --shadow: 0 18px 50px rgba(33, 46, 63, 0.12);
-    }
-
-    * { box-sizing: border-box; }
-    html, body { margin: 0; padding: 0; }
+    /* Grundläggande reset för mejlklienter */
+    body, p, h1, h2, h3, ul, li { margin: 0; padding: 0; }
     body {
-      font-family: Georgia, "Times New Roman", serif;
-      background:
-        radial-gradient(circle at top left, rgba(42, 75, 109, 0.07), transparent 34%),
-        radial-gradient(circle at top right, rgba(199, 154, 45, 0.08), transparent 28%),
-        var(--bg);
-      color: var(--ink);
+      background-color: #eef2f4;
+      font-family: Arial, Helvetica, sans-serif;
+      color: #111827;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
     }
-
-    .shell {
-      max-width: 920px;
+    
+    /* Huvudbehållare */
+    .email-wrapper {
+      width: 100%;
+      background-color: #eef2f4;
+      padding: 30px 10px;
+    }
+    .email-container {
+      max-width: 600px;
       margin: 0 auto;
-      padding: 24px 16px 40px;
-    }
-
-    .page {
-      background: var(--panel);
-      border: 1px solid var(--line);
-      border-radius: 18px;
+      background-color: #ffffff;
+      border-radius: 16px;
       overflow: hidden;
-      box-shadow: var(--shadow);
+      box-shadow: 0 10px 30px rgba(30, 54, 80, 0.1);
     }
 
-    .hero {
-      position: relative;
-      background: linear-gradient(135deg, var(--navy-deep), var(--navy));
-      color: #fff;
-    }
-
-    .hero img {
+    /* Header med bild */
+    .header-image img {
       display: block;
       width: 100%;
       height: auto;
-      border: 0;
+      border-bottom: 4px solid #c79a2d; /* Guldlinje */
     }
 
-    .hero-copy {
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      gap: 16px;
-      padding: 22px 24px 20px;
-      background: linear-gradient(to top, rgba(16, 24, 34, 0.84), rgba(16, 24, 34, 0));
+    /* Intro */
+    .content-padding {
+      padding: 32px;
     }
-
     .eyebrow {
-      display: inline-block;
-      margin: 0 0 10px;
-      padding: 7px 10px;
-      border: 1px solid rgba(255, 255, 255, 0.28);
-      border-radius: 999px;
-      font: 700 11px/1.1 Arial, Helvetica, sans-serif;
-      letter-spacing: 0.06em;
+      color: #c63b2b;
+      font-size: 13px;
+      font-weight: bold;
       text-transform: uppercase;
-      background: rgba(255, 255, 255, 0.08);
+      letter-spacing: 1px;
+      margin-bottom: 8px;
     }
-
-    .hero h1 {
-      margin: 0;
-      font-size: clamp(32px, 4vw, 52px);
-      line-height: 1;
-      letter-spacing: -0.03em;
-    }
-
-    .hero p {
-      margin: 8px 0 0;
-      max-width: 42rem;
-      font: 400 15px/1.5 Arial, Helvetica, sans-serif;
-      color: rgba(255, 255, 255, 0.9);
-    }
-
-    .route-chip {
-      min-width: 176px;
-      text-align: right;
-      font: 700 12px/1.35 Arial, Helvetica, sans-serif;
-      color: #fff;
-    }
-
-    .route-chip span {
-      display: inline-block;
-      margin-top: 6px;
-      padding: 7px 10px;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.12);
-      border: 1px solid rgba(255, 255, 255, 0.18);
-    }
-
-    .content {
-      padding: 28px 28px 32px;
-      font: 400 16px/1.65 Arial, Helvetica, sans-serif;
-      color: var(--ink);
-    }
-
-    .intro {
-      display: grid;
-      grid-template-columns: 1.35fr 0.9fr;
-      gap: 18px;
-      align-items: start;
-      padding-bottom: 22px;
-      border-bottom: 1px solid var(--line);
-      margin-bottom: 22px;
-    }
-
-    .lede {
-      margin: 0;
-      font-size: 17px;
-      color: #1d2731;
-    }
-
-    .summary {
-      background: linear-gradient(180deg, #fff, #fafbfc);
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      padding: 16px;
-    }
-
-    .summary .label {
-      margin: 0 0 6px;
-      font: 700 11px/1 Arial, Helvetica, sans-serif;
-      letter-spacing: 0.07em;
-      text-transform: uppercase;
-      color: var(--navy);
-    }
-
-    .summary .value {
-      margin: 0;
-      font-size: 14px;
-      color: var(--muted);
-    }
-
-    .facts {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 12px;
-      margin: 18px 0 24px;
-    }
-
-    .fact {
-      padding: 14px 14px 15px;
-      background: #fbfcfd;
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      min-height: 100px;
-    }
-
-    .fact span {
-      display: block;
-      font: 700 11px/1.15 Arial, Helvetica, sans-serif;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--navy);
-      margin-bottom: 10px;
-    }
-
-    .fact strong {
-      display: block;
-      font-size: 17px;
+    h1 {
+      font-size: 26px;
+      color: #1e3650;
       line-height: 1.2;
-      color: var(--ink);
+      margin-bottom: 16px;
+    }
+    .intro-text {
+      font-size: 16px;
+      color: #374151;
+      margin-bottom: 24px;
     }
 
-    .panel {
-      padding: 18px 18px 16px;
-      margin: 18px 0;
-      border: 1px solid var(--line);
-      border-left: 4px solid var(--gold);
-      border-radius: 14px;
-      background: linear-gradient(180deg, #fff, #fafafa);
+    /* Ikon-lista (Snabbfakta) */
+    .quick-facts {
+      background-color: #f8fafc;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 30px;
+      border: 1px solid #e2e8f0;
+    }
+    .fact-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+    .fact-item:last-child { margin-bottom: 0; }
+    .fact-icon {
+      width: 24px;
+      height: 24px;
+      color: #2a4b6d;
+      margin-right: 12px;
+      flex-shrink: 0;
+    }
+    .fact-text {
+      font-size: 15px;
+    }
+    .fact-text strong {
+      color: #1e3650;
     }
 
-    .panel h2,
-    .content h2 {
-      margin: 0 0 10px;
-      font-size: 18px;
-      line-height: 1.2;
-      color: var(--navy-deep);
+    /* Sektion: Gemenskap & Bild 2 */
+    .split-section {
+      display: flex;
+      gap: 24px;
+      margin-bottom: 30px;
+      align-items: center;
     }
-
-    .panel p,
-    .content p {
-      margin: 0 0 10px;
+    .split-text {
+      flex: 1;
     }
-
-    .list {
-      margin: 10px 0 0;
-      padding: 0;
+    .split-text h2 {
+      font-size: 20px;
+      color: #1e3650;
+      margin-bottom: 12px;
+    }
+    .split-image {
+      flex: 1;
+    }
+    .split-image img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+    .check-list {
       list-style: none;
     }
-
-    .list li {
-      margin: 0 0 10px;
-      padding-left: 22px;
+    .check-list li {
       position: relative;
+      padding-left: 28px;
+      margin-bottom: 10px;
+      font-size: 15px;
     }
-
-    .list li::before {
-      content: "";
+    .check-list svg {
       position: absolute;
       left: 0;
-      top: 10px;
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: var(--gold);
-      box-shadow: 0 0 0 3px rgba(199, 154, 45, 0.18);
+      top: 2px;
+      width: 20px;
+      height: 20px;
+      color: #c79a2d;
     }
 
-    .cta-row {
+    /* Prisboxen (Tydliggjord) */
+    .price-box {
+      background: linear-gradient(135deg, #1e3650, #2a4b6d);
+      color: #ffffff;
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+    .price-box h2 {
+      color: #ffffff;
+      font-size: 20px;
+      margin-bottom: 10px;
       display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 14px;
-      margin-top: 22px;
-      padding-top: 20px;
-      border-top: 1px solid var(--line);
-    }
-
-    .button {
-      display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-height: 48px;
-      padding: 0 18px;
-      border-radius: 999px;
-      background: linear-gradient(180deg, var(--red), #a82f24);
-      color: #fff;
-      text-decoration: none;
-      font: 700 14px/1 Arial, Helvetica, sans-serif;
-      letter-spacing: 0.03em;
-      box-shadow: 0 12px 26px rgba(198, 59, 43, 0.22);
-      border: 1px solid rgba(0, 0, 0, 0.05);
+      gap: 8px;
     }
-
-    .button:hover { filter: brightness(1.03); }
-
-    .smallprint {
-      margin: 0;
-      font-size: 13px;
-      color: var(--muted);
-      max-width: 42rem;
+    .price-title-icon {
+      width: 240px;
+      height: auto;
+      flex-shrink: 0;
     }
-
-    .footer {
+    .price-box p {
+      color: #cbd5e1;
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+    .price-tiers {
       display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      align-items: center;
-      padding: 14px 28px 18px;
-      background: #edf1f4;
-      border-top: 1px solid var(--line);
-      font: 400 12px/1.5 Arial, Helvetica, sans-serif;
-      color: var(--muted);
+      gap: 16px;
+      justify-content: center;
+    }
+    .tier {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 8px;
+      padding: 16px;
+      flex: 1;
+    }
+    .tier.best-price {
+      background: #ffffff;
+      color: #1e3650;
+      transform: scale(1.05);
+      border: 2px solid #c79a2d;
+    }
+    .tier span {
+      display: block;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 4px;
+      opacity: 0.8;
+    }
+    .tier.best-price span { opacity: 1; color: #5a6472; }
+    .tier strong {
+      display: block;
+      font-size: 24px;
+      line-height: 1;
     }
 
-    .footer strong {
-      color: var(--ink);
-      font-weight: 700;
+    /* Call to Action (Knapp) */
+    .cta-section {
+      text-align: center;
+      padding-top: 10px;
+    }
+    .button {
+      display: inline-block;
+      background-color: #c63b2b;
+      color: #ffffff !important;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: bold;
+      padding: 16px 32px;
+      border-radius: 99px;
+      box-shadow: 0 4px 15px rgba(198, 59, 43, 0.3);
+      transition: background-color 0.2s;
+    }
+    .button:hover {
+      background-color: #a82f24;
+    }
+    .deadline {
+      margin-top: 16px;
+      font-size: 14px;
+      color: #5a6472;
+      background: #fdf2f2;
+      display: inline-block;
+      padding: 8px 16px;
+      border-radius: 8px;
+      border: 1px solid #f9d8d8;
     }
 
-    @media (max-width: 760px) {
-      .shell { padding: 12px 10px 28px; }
-      .content { padding: 22px 18px 26px; }
-      .hero-copy {
-        position: static;
-        display: block;
-        padding: 18px 18px 20px;
-        background: linear-gradient(180deg, rgba(16, 24, 34, 0.84), rgba(16, 24, 34, 0.96));
-      }
-      .route-chip {
-        text-align: left;
-        margin-top: 12px;
-      }
-      .intro,
-      .facts {
-        grid-template-columns: 1fr;
-      }
-      .footer {
-        display: block;
-        padding: 14px 18px 18px;
-      }
-      .footer p + p {
-        margin-top: 10px;
-      }
+    /* Footer */
+    .footer {
+      background-color: #f1f5f9;
+      padding: 24px;
+      text-align: center;
+      font-size: 13px;
+      color: #64748b;
+      border-top: 1px solid #e2e8f0;
+    }
+
+    /* Responsivitet för mobiler */
+    @media (max-width: 600px) {
+      .content-padding { padding: 24px 16px; }
+      .split-section { flex-direction: column; }
+      .split-image { width: 100%; order: -1; } /* Lägger bilden ovanför texten på mobil */
+      .price-tiers { flex-direction: column; }
+      .tier.best-price { transform: scale(1); }
+      h1 { font-size: 24px; }
     }
   </style>
 </head>
 <body>
-  <div class="shell">
-    <div class="page">
-      <section class="hero">
-        <img src="buss_amb.png" alt="Ambition Sverige bussresa till Stockholm">
-        <div class="hero-copy">
-          <div>
-            <div class="eyebrow">Swexit 9 maj</div>
-            <h1>Bussresa till Stockholm</h1>
-            <p>En samlad resa från Skene via Borås, med gemenskap, tydlig plan och självkostnad som håller nere priset.</p>
-          </div>
-          <div class="route-chip">
-            E4 mot Stockholm
-            <br>
-            <span>Avgång 06:00 från Skene</span>
-          </div>
-        </div>
-      </section>
 
-      <main class="content">
-        <div class="intro">
-          <p class="lede">
-            Den <strong>9 maj</strong> samlas vi i Stockholm för Swexit-manifestationen. För att göra resan så smidig, billig och trevlig som möjligt abonnerar vi en egen buss.
-          </p>
-          <aside class="summary">
-            <p class="label">Anmälan</p>
-            <p class="value"><strong>Sista dag:</strong> 26 april</p>
-            <p class="value"><strong>Beslut om bokning:</strong> 27 april</p>
-          </aside>
-        </div>
+  <div class="email-wrapper">
+    <div class="email-container">
+      
+      <!-- Huvudbild (Hero) -->
+      <div class="header-image">
+        <img src="buss_amb.png" alt="Ambition Sveriges buss på väg mot Stockholm längs E4">
+      </div>
 
-        <div class="facts">
-          <div class="fact">
-            <span>Prisnivå</span>
-            <strong>Ca 600 kr* när vi blir 50 personer</strong>
+      <!-- Innehåll -->
+      <div class="content-padding">
+        
+        <div class="eyebrow">Stockholm, 9 Maj</div>
+        <h1>Följ med på gemensam bussresa till Swexit-manifestationen</h1>
+        <p class="intro-text">
+          För att göra resan så smidig, prisvärd och trevlig som möjligt abonnerar vi en egen buss. Följ med oss för en historisk dag med stark gemenskap och en tydlig plan!
+        </p>
+
+        <!-- Snabbfakta med SVGs -->
+        <div class="quick-facts">
+          <div class="fact-item">
+            <svg class="fact-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <div class="fact-text"><strong>Avgång:</strong> 06:00 från Skene. Åter i Skene kl 00:00.</div>
           </div>
-          <div class="fact">
-            <span>Avgång</span>
-            <strong>06:00 från Skene</strong>
+          <div class="fact-item">
+            <svg class="fact-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+            <div class="fact-text"><strong>Rutt:</strong> Skene, med upphämtning i Borås längs vägen.</div>
           </div>
-          <div class="fact">
-            <span>Rutt</span>
-            <strong>Via Borås för upphämtning</strong>
-          </div>
-          <div class="fact">
-            <span>Hemkomst</span>
-            <strong>00:00 åter i Skene</strong>
+          <div class="fact-item">
+            <svg class="fact-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+            </svg>
+            <div class="fact-text"><strong>Parkering:</strong> Trygg och gratis parkering vid bussbolaget i Skene.</div>
           </div>
         </div>
 
-        <section class="panel">
-          <h2>Varför välja bussen?</h2>
-          <ul class="list">
-            <li>Prisvärt: ca 1000 kr vid 30 personer, och ca 600 kr vid 50 personer.</li>
-            <li>Bekvämt: trygg och gratis parkering vid bussbolaget i Skene.</li>
-            <li>Gemenskap: ladda upp tillsammans med andra engagerade på vägen upp.</li>
-          </ul>
-        </section>
+        <!-- Tydlig Prissättning -->
+        <div class="price-box">
+          <h2>
+            <img class="price-title-icon" src="bussresa.svg" alt="" aria-hidden="true">
+            <span>Vad kostar resan per person?</span>
+          </h2>
+          <p>Vi reser till självkostnadspris. Ju fler vi blir, desto billigare blir det för alla per person!</p>
+          
+          <div class="price-tiers">
+            <div class="tier best-price">
+              <span>Mål: 50 resenärer</span>
+              <strong>ca 600 kr</strong>
+            </div>
+            <div class="tier">
+              <span>Vid 30 resenärer</span>
+              <strong>ca 1 000 kr</strong>
+            </div>
+          </div>
+        </div>
 
-        <section class="panel">
-          <h2>Resplan & tider</h2>
-          <ul class="list">
-            <li>06:00 avgång från Skene.</li>
-            <li>Via Borås för upphämtning längs vägen.</li>
-            <li>00:00 åter i Skene efter en historisk dag.</li>
-          </ul>
-        </section>
+        <!-- Smart bildplacering: Bild bredvid text -->
+        <div class="split-section">
+          <div class="split-text">
+            <h2>Gemenskap på vägen</h2>
+            <p style="margin-bottom: 12px; font-size: 15px;">Att åka gemensam buss är inte bara praktiskt, det är också en del av upplevelsen.</p>
+            <ul class="check-list">
+              <li>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                </svg>
+                Ladda upp tillsammans med andra engagerade.
+              </li>
+              <li>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                </svg>
+                Slipp stressen med att köra och hitta parkering i Stockholm.
+              </li>
+              <li>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                </svg>
+                Vi samordnar allt – du kan bara kliva på och njuta av resan.
+              </li>
+            </ul>
+          </div>
+          <div class="split-image">
+            <img src="happyppl.png" alt="Glada resenärer från Ambition Sverige på bussen">
+          </div>
+        </div>
 
-        <div class="cta-row">
-          <a class="button" href="mailto:anneli.kullberg@ambitionsverige.se?subject=Intresseanm%C3%A4lan%20Buss%209%20maj&body=Hej%20Anneli%2C%0D%0A%0D%0AJag%20vill%20anm%C3%A4la%20intresse%20f%C3%B6r%20bussresan.%0D%0A%0D%0AAntal%20platser%3A%20%0D%0ANamn%3A%20%0D%0ATelefonnummer%3A%20%0D%0AStad%20jag%20reser%20ifr%C3%A5n%3A%20">
+        <!-- Knapp och Anmälan -->
+        <div class="cta-section">
+          <a href="mailto:anneli.kullberg@ambitionsverige.se?subject=Intresseanm%C3%A4lan%20Buss%209%20maj&body=Hej%20Anneli%2C%0D%0A%0D%0AJag%20vill%20anm%C3%A4la%20intresse%20f%C3%B6r%20bussresan.%0D%0A%0D%0AAntal%20platser%3A%20%0D%0ANamn%3A%20%0D%0ATelefonnummer%3A%20%0D%0AStad%20jag%20reser%20ifr%C3%A5n%3A%20" class="button">
             ANMÄL DITT INTRESSE HÄR
           </a>
-          <p class="smallprint">
-            Beslut om bokning tas den 27 april baserat på antal anmälda. Maila din anmälan till
-            <strong>anneli.kullberg@ambitionsverige.se</strong> senast den 26/4.
-          </p>
+          <br>
+          <div class="deadline">
+            <strong>Sista dag för anmälan:</strong> 26 april.<br> 
+            <span style="font-size: 13px;">Beslut om bokning tas den 27 april baserat på antal anmälda.</span>
+          </div>
         </div>
-      </main>
 
-      <footer class="footer">
-        <p>Arrangeras i samarbete för Swexit-demonstrationen.</p>
-        <p><strong>Ambition Sverige</strong></p>
-      </footer>
+      </div>
+
+      <!-- Footer -->
+      <div class="footer">
+        <p style="margin-bottom: 8px;">Arrangeras i samarbete för Swexit-demonstrationen.</p>
+        <div style="margin-top: 16px;">
+          <img src="ambition-sverige-partibeteckning.svg" alt="Ambition Sverige logotyp" style="display:block; width:100%; max-width: 180px; height:auto; margin:0 auto;">
+        </div>
+      </div>
+
     </div>
   </div>
+
 </body>
 </html>
