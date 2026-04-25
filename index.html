@@ -1,104 +1,400 @@
 <!DOCTYPE html>
-<html>
+<html lang="sv">
 <head>
-	<title>Bussresa till Swexit 9/5</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bussresa till Swexit 9/5</title>
+  <style>
+    :root {
+      --bg: #eef2f4;
+      --panel: #ffffff;
+      --ink: #111827;
+      --muted: #5a6472;
+      --navy: #2a4b6d;
+      --navy-deep: #1e3650;
+      --line: #d8dee6;
+      --gold: #c79a2d;
+      --gold-soft: #f4ead0;
+      --red: #c63b2b;
+      --shadow: 0 18px 50px rgba(33, 46, 63, 0.12);
+    }
 
-	<style>
-		.cwSendError {
-			margin: 1em;
-		}
-		.cwSendErrorContent {
-			box-sizing: border-box;
-			max-width: 600px;
-			margin: auto;
-			width: 50%;
-			border: 2px solid #2A4B6D;
-			border-radius: 6px;
-			padding: 1em 25px 2em 25px;
-		}
-		.cwParameterName {
-			opacity: 0.6;
-			text-align: right;
-			padding-right: 0.5em;
-		}
-		.cwParameterValue {
-			font-weight: bold;
-			text-align: left;
-		}
-		.cwPrintOnly,
-		.cwPrintOnly * {
-			display: none !important;
-		}
-	</style>
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      font-family: Georgia, "Times New Roman", serif;
+      background:
+        radial-gradient(circle at top left, rgba(42, 75, 109, 0.07), transparent 34%),
+        radial-gradient(circle at top right, rgba(199, 154, 45, 0.08), transparent 28%),
+        var(--bg);
+      color: var(--ink);
+    }
+
+    .shell {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 24px 16px 40px;
+    }
+
+    .page {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .hero {
+      position: relative;
+      background: linear-gradient(135deg, var(--navy-deep), var(--navy));
+      color: #fff;
+    }
+
+    .hero img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border: 0;
+    }
+
+    .hero-copy {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 16px;
+      padding: 22px 24px 20px;
+      background: linear-gradient(to top, rgba(16, 24, 34, 0.84), rgba(16, 24, 34, 0));
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin: 0 0 10px;
+      padding: 7px 10px;
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      border-radius: 999px;
+      font: 700 11px/1.1 Arial, Helvetica, sans-serif;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-size: clamp(32px, 4vw, 52px);
+      line-height: 1;
+      letter-spacing: -0.03em;
+    }
+
+    .hero p {
+      margin: 8px 0 0;
+      max-width: 42rem;
+      font: 400 15px/1.5 Arial, Helvetica, sans-serif;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .route-chip {
+      min-width: 176px;
+      text-align: right;
+      font: 700 12px/1.35 Arial, Helvetica, sans-serif;
+      color: #fff;
+    }
+
+    .route-chip span {
+      display: inline-block;
+      margin-top: 6px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+    }
+
+    .content {
+      padding: 28px 28px 32px;
+      font: 400 16px/1.65 Arial, Helvetica, sans-serif;
+      color: var(--ink);
+    }
+
+    .intro {
+      display: grid;
+      grid-template-columns: 1.35fr 0.9fr;
+      gap: 18px;
+      align-items: start;
+      padding-bottom: 22px;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 22px;
+    }
+
+    .lede {
+      margin: 0;
+      font-size: 17px;
+      color: #1d2731;
+    }
+
+    .summary {
+      background: linear-gradient(180deg, #fff, #fafbfc);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 16px;
+    }
+
+    .summary .label {
+      margin: 0 0 6px;
+      font: 700 11px/1 Arial, Helvetica, sans-serif;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--navy);
+    }
+
+    .summary .value {
+      margin: 0;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .facts {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin: 18px 0 24px;
+    }
+
+    .fact {
+      padding: 14px 14px 15px;
+      background: #fbfcfd;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      min-height: 100px;
+    }
+
+    .fact span {
+      display: block;
+      font: 700 11px/1.15 Arial, Helvetica, sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--navy);
+      margin-bottom: 10px;
+    }
+
+    .fact strong {
+      display: block;
+      font-size: 17px;
+      line-height: 1.2;
+      color: var(--ink);
+    }
+
+    .panel {
+      padding: 18px 18px 16px;
+      margin: 18px 0;
+      border: 1px solid var(--line);
+      border-left: 4px solid var(--gold);
+      border-radius: 14px;
+      background: linear-gradient(180deg, #fff, #fafafa);
+    }
+
+    .panel h2,
+    .content h2 {
+      margin: 0 0 10px;
+      font-size: 18px;
+      line-height: 1.2;
+      color: var(--navy-deep);
+    }
+
+    .panel p,
+    .content p {
+      margin: 0 0 10px;
+    }
+
+    .list {
+      margin: 10px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .list li {
+      margin: 0 0 10px;
+      padding-left: 22px;
+      position: relative;
+    }
+
+    .list li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 10px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--gold);
+      box-shadow: 0 0 0 3px rgba(199, 154, 45, 0.18);
+    }
+
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 14px;
+      margin-top: 22px;
+      padding-top: 20px;
+      border-top: 1px solid var(--line);
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 18px;
+      border-radius: 999px;
+      background: linear-gradient(180deg, var(--red), #a82f24);
+      color: #fff;
+      text-decoration: none;
+      font: 700 14px/1 Arial, Helvetica, sans-serif;
+      letter-spacing: 0.03em;
+      box-shadow: 0 12px 26px rgba(198, 59, 43, 0.22);
+      border: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .button:hover { filter: brightness(1.03); }
+
+    .smallprint {
+      margin: 0;
+      font-size: 13px;
+      color: var(--muted);
+      max-width: 42rem;
+    }
+
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+      padding: 14px 28px 18px;
+      background: #edf1f4;
+      border-top: 1px solid var(--line);
+      font: 400 12px/1.5 Arial, Helvetica, sans-serif;
+      color: var(--muted);
+    }
+
+    .footer strong {
+      color: var(--ink);
+      font-weight: 700;
+    }
+
+    @media (max-width: 760px) {
+      .shell { padding: 12px 10px 28px; }
+      .content { padding: 22px 18px 26px; }
+      .hero-copy {
+        position: static;
+        display: block;
+        padding: 18px 18px 20px;
+        background: linear-gradient(180deg, rgba(16, 24, 34, 0.84), rgba(16, 24, 34, 0.96));
+      }
+      .route-chip {
+        text-align: left;
+        margin-top: 12px;
+      }
+      .intro,
+      .facts {
+        grid-template-columns: 1fr;
+      }
+      .footer {
+        display: block;
+        padding: 14px 18px 18px;
+      }
+      .footer p + p {
+        margin-top: 10px;
+      }
+    }
+  </style>
 </head>
-<body style="font-family: Arial, Helvetica, sans-serif; font-size: 13px; background-color: #F2F2F2; color: #000; padding: 0; margin: 0;">
-<div style="padding: 0; margin: auto; max-width: 600px; border-collapse: collapse;">
-<table style="width: 100%; border: 0; margin: 0; border-collapse: collapse; background-color: #F2F2F2; color: #000;">
-	<tbody>
-		<tr>
-			<td style="padding: 0; text-align: center;">
-			<table style="margin: auto; max-width: 600px; border: 0; margin: 0; border-collapse: collapse; background-color: #FFF; color: #000;">
-				<tbody>
-					<tr>
-						<td style="padding: 0; text-align: center;">
-<div><img src="buss_amb.png" style="display: block; max-width: 100% !important; border-width: 0; border: 0;" alt="Ambition Sverige bussresa till Stockholm"></div>
-<div style="height: 1px; line-height: 1px; font-size: 1px;">&nbsp;</div>
-</td>
-					</tr>
-					<tr>
-						<td style="padding: 25px 25px 35px 25px; text-align: left;">
-<div><h3>Hej!</h3>
-</div>
+<body>
+  <div class="shell">
+    <div class="page">
+      <section class="hero">
+        <img src="buss_amb.png" alt="Ambition Sverige bussresa till Stockholm">
+        <div class="hero-copy">
+          <div>
+            <div class="eyebrow">Swexit 9 maj</div>
+            <h1>Bussresa till Stockholm</h1>
+            <p>En samlad resa från Skene via Borås, med gemenskap, tydlig plan och självkostnad som håller nere priset.</p>
+          </div>
+          <div class="route-chip">
+            E4 mot Stockholm
+            <br>
+            <span>Avgång 06:00 från Skene</span>
+          </div>
+        </div>
+      </section>
 
-<div>
-<p style="margin-bottom:11px">Den <strong>9 maj</strong> samlas vi i Stockholm för Swexit-manifestationen. För att göra resan så smidig, billig och trevlig som möjligt abonnerar vi en egen buss.</p>
+      <main class="content">
+        <div class="intro">
+          <p class="lede">
+            Den <strong>9 maj</strong> samlas vi i Stockholm för Swexit-manifestationen. För att göra resan så smidig, billig och trevlig som möjligt abonnerar vi en egen buss.
+          </p>
+          <aside class="summary">
+            <p class="label">Anmälan</p>
+            <p class="value"><strong>Sista dag:</strong> 26 april</p>
+            <p class="value"><strong>Beslut om bokning:</strong> 27 april</p>
+          </aside>
+        </div>
 
-<p style="margin-bottom:11px"><strong>Varför välja bussen?</strong></p>
+        <div class="facts">
+          <div class="fact">
+            <span>Prisnivå</span>
+            <strong>Ca 600 kr* när vi blir 50 personer</strong>
+          </div>
+          <div class="fact">
+            <span>Avgång</span>
+            <strong>06:00 från Skene</strong>
+          </div>
+          <div class="fact">
+            <span>Rutt</span>
+            <strong>Via Borås för upphämtning</strong>
+          </div>
+          <div class="fact">
+            <span>Hemkomst</span>
+            <strong>00:00 åter i Skene</strong>
+          </div>
+        </div>
 
-<p style="margin-bottom:11px">Prisvärt: Ca 600 kr* när vi blir 50 personer.</p>
-<p style="margin-bottom:11px">Bekvämt: Trygg och gratis parkering vid bussbolaget i Skene.</p>
-<p style="margin-bottom:11px">Gemenskap: Ladda upp tillsammans med andra engagerade på vägen upp.</p>
+        <section class="panel">
+          <h2>Varför välja bussen?</h2>
+          <ul class="list">
+            <li>Prisvärt: ca 1000 kr vid 30 personer, och ca 600 kr vid 50 personer.</li>
+            <li>Bekvämt: trygg och gratis parkering vid bussbolaget i Skene.</li>
+            <li>Gemenskap: ladda upp tillsammans med andra engagerade på vägen upp.</li>
+          </ul>
+        </section>
 
-<p style="margin-bottom:11px"><strong>Resplan & tider</strong></p>
-<p style="margin-bottom:11px">06:00 avgång från Skene.</p>
-<p style="margin-bottom:11px">Via Borås för upphämtning längs vägen.</p>
-<p style="margin-bottom:11px">00:00 åter i Skene efter en historisk dag.</p>
+        <section class="panel">
+          <h2>Resplan & tider</h2>
+          <ul class="list">
+            <li>06:00 avgång från Skene.</li>
+            <li>Via Borås för upphämtning längs vägen.</li>
+            <li>00:00 åter i Skene efter en historisk dag.</li>
+          </ul>
+        </section>
 
-<p style="margin-bottom:11px"><strong>Pris</strong></p>
-<p style="margin-bottom:11px">Vid 30 personer: ca 1000 kr.</p>
-<p style="margin-bottom:11px">Vid 50 personer: ca 600 kr.</p>
+        <div class="cta-row">
+          <a class="button" href="mailto:anneli.kullberg@ambitionsverige.se?subject=Intresseanm%C3%A4lan%20Buss%209%20maj&body=Hej%20Anneli%2C%0D%0A%0D%0AJag%20vill%20anm%C3%A4la%20intresse%20f%C3%B6r%20bussresan.%0D%0A%0D%0AAntal%20platser%3A%20%0D%0ANamn%3A%20%0D%0ATelefonnummer%3A%20%0D%0AStad%20jag%20reser%20ifr%C3%A5n%3A%20">
+            ANMÄL DITT INTRESSE HÄR
+          </a>
+          <p class="smallprint">
+            Beslut om bokning tas den 27 april baserat på antal anmälda. Maila din anmälan till
+            <strong>anneli.kullberg@ambitionsverige.se</strong> senast den 26/4.
+          </p>
+        </div>
+      </main>
 
-<p style="margin-bottom:11px">Sista dag för intresseanmälan är <strong>26 april</strong>.</p>
-
-<p style="margin-bottom:11px"><a href="mailto:anneli.kullberg@ambitionsverige.se?subject=Intresseanmälan Buss 9 maj&body=Hej Anneli,%0D%0A%0D%0AJag vill anmäla intresse för bussresan.%0D%0A%0D%0AAntal platser: %0D%0ANamn: %0D%0ATelefonnummer: %0D%0AStad jag reser ifrån: " style="display:inline-block; background-color:#2A4B6D; color:#fff; text-decoration:none; padding:12px 18px; border-radius:4px;">ANMÄL DITT INTRESSE HÄR</a></p>
-
-<p style="margin-bottom:11px">Beslut om bokning tas den 27 april baserat på antal anmälda. Maila din anmälan till <strong>anneli.kullberg@ambitionsverige.se</strong> senast den 26/4.</p>
-
-<p style="margin-bottom:11px">Varma hälsningar</p>
-<p style="margin-bottom:11px">Ambition Sverige</p>
-</div>
-</td>
-					</tr>
-					<tr class="cwNoPrint">
-						<td style="padding: 20px 25px; background-color: #E8E8E8;">
-						<table style="border: 0; margin: 0; border-collapse: collapse; width: 100%;">
-							<tbody>
-								<tr>
-									<td style="font-size: 12px; color: #444;">
-                Arrangeras i samarbete för Swexit-demonstrationen.
-</td>
-									<td style="text-align: right; font-size: 12px;"><a href="mailto:anneli.kullberg@ambitionsverige.se" target="_blank" title="E-post">E-post</a></td>
-								</tr>
-							</tbody>
-						</table>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-			</td>
-		</tr>
-	</tbody>
-</table>
-</div>
+      <footer class="footer">
+        <p>Arrangeras i samarbete för Swexit-demonstrationen.</p>
+        <p><strong>Ambition Sverige</strong></p>
+      </footer>
+    </div>
+  </div>
 </body>
 </html>
